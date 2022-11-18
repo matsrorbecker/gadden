@@ -10,14 +10,20 @@ const BASE_URL = "https://feeds.expressen.se";
 const FETCH_INTERVAL = 30000;
 let ignoreNewsBefore = new Date(0);
 
+const sections = process.argv.slice(2);
+if (!sections.length) sections.push("/");
+const urls = sections.map((section) => `${BASE_URL}${section.startsWith("/") ? "" : "/"}${section}`);
+
 const poll = async () => {
-  const url = BASE_URL; // TODO: Add support for sections
-  const feed = await fetchFeed(url);
-  const items = parseFeed(feed)
+  const feeds = await Promise.all(urls.map(fetchFeed));
+  const filteredFeeds = feeds.filter(Boolean);
+  const items = filteredFeeds.map(parseFeed)
+    .flat()
     .filter((item) => item.pubDate > ignoreNewsBefore && !item.link.includes("/brand-studio/"))
     .sort((a, b) => a.pubDate - b.pubDate);
-  if (items.length) ignoreNewsBefore = items[items.length - 1].pubDate;
-  logItems(items);
+  const uniqueItems = [ ...new Map(items.map((item) => [ item.link, item ])).values() ];
+  if (uniqueItems.length) ignoreNewsBefore = uniqueItems[uniqueItems.length - 1].pubDate;
+  logItems(uniqueItems);
 };
 
 setInterval(poll, FETCH_INTERVAL);

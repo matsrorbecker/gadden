@@ -1,0 +1,40 @@
+{
+  "name": "gadden",
+  "version": "1.0.0",
+  "description": "Latest news from Expressen -- in your terminal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matsrorbecker/gadden.git"
+  },
+  "keywords": [
+    "RSS",
+    "news",
+    "Expressen",
+    "expressen.se",
+    "CLI",
+    "command-line",
+    "terminal"
+  ],
+  "author": "Mats Rörbecker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matsrorbecker/gadden/issues"
+  },
+  "homepage": "https://github.com/matsrorbecker/gadden#readme",
+  "bin": {
+    "gadden": "./index.js"
+  },
+  "dependencies": {
+    "axios": "^1.1.3",
+    "cheerio": "^1.0.0-rc.12",
+    "date-fns": "^2.29.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-exp": "^0.5.0"
+  }
+}

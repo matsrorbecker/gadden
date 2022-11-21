@@ -6,6 +6,6 @@ Latest news from [Expressen](https://www.expressen.se) -- in your terminal
 
 ## Usage
 ```javascript
-gadden                    // get latest news from Expressen's main feed
+gadden                    // get latest news from Expressen's main feed ("nyheter")
 gadden sport noje ledare  // get latest news from selected sections
 ```

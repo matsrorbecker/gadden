@@ -11,7 +11,7 @@ const FETCH_INTERVAL = 30000;
 let ignoreNewsBefore = new Date(0);
 
 const sections = process.argv.slice(2);
-if (!sections.length) sections.push("/");
+if (!sections.length) sections.push("nyheter");
 const urls = sections.map((section) => `${BASE_URL}${section.startsWith("/") ? "" : "/"}${section}`);
 
 const poll = async () => {

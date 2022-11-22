@@ -4,7 +4,7 @@
   "description": "Latest news from Expressen -- in your terminal",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,9 @@
     "date-fns": "^2.29.3"
   },
   "devDependencies": {
+    "chai": "^4.3.7",
     "eslint": "^8.27.0",
-    "eslint-config-exp": "^0.5.0"
+    "eslint-config-exp": "^0.5.0",
+    "mocha": "^10.1.0"
   }
 }

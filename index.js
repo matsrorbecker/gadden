@@ -3,7 +3,7 @@
 "use strict";
 
 const fetchFeed = require("./lib/fetchFeed");
-const parseFeed = require("./lib/parseFeed");
+const { parseFeed } = require("./lib/parseFeed");
 const logItems = require("./lib/logItems");
 
 const BASE_URL = "https://feeds.expressen.se";
@@ -22,7 +22,8 @@ const poll = async () => {
     .filter((item) => item.pubDate > ignoreNewsBefore && !item.link.includes("/brand-studio/"))
     .sort((a, b) => a.pubDate - b.pubDate);
   const uniqueItems = [ ...new Map(items.map((item) => [ item.link, item ])).values() ];
-  if (uniqueItems.length) ignoreNewsBefore = uniqueItems[uniqueItems.length - 1].pubDate;
+  if (!uniqueItems.length) return;
+  ignoreNewsBefore = uniqueItems[uniqueItems.length - 1].pubDate;
   logItems(uniqueItems);
 };
 
